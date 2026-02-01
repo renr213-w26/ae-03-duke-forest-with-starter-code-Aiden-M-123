@@ -25,7 +25,7 @@ Luckily, you can help them answer this question with data visualization!
 #| label: garage
 #| eval: false
 
-duke_forest |>
+duke_forest <- duke_forest |>
   mutate(garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage"))
 ```
 
@@ -37,10 +37,21 @@ duke_forest |>
 ```{r}
 #| label: price-garage
 
-# add code here
+duke_forest <- duke_forest |>
+  mutate(garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage"))
+
+ggplot(duke_forest, aes(x=price, fill=garage)) +
+         geom_histogram(binwidth=5000, show.legend=FALSE) + facet_wrap(~garage) +
+         labs (
+           title = "Home Price Distribution by Garage in Duke Forest",
+           x = "Price (USD)",
+           y = "Number of Houses"
+         )
+       
 ```
 
 Add narrative here...
+Houses with a garage tend to be more expensive, while houses without a garage cluster in a lower range. This indicates having a garage is sought after in Duke Forest. Adding a legend is not needed as the colour is already differentiated by garage status.
 
 ::: callout-important
 Now is a good time to render, commit, and push.
