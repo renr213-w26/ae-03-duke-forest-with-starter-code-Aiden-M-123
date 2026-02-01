@@ -25,7 +25,7 @@ Luckily, you can help them answer this question with data visualization!
 #| label: garage
 #| eval: false
 
-duke_forest |>
+duke_forest <- duke_forest |>
   mutate(garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage"))
 ```
 
@@ -37,10 +37,21 @@ duke_forest |>
 ```{r}
 #| label: price-garage
 
-# add code here
+duke_forest <- duke_forest |>
+  mutate(garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage"))
+
+ggplot(duke_forest, aes(x=price, fill=garage)) +
+         geom_histogram(binwidth=5000, show.legend=FALSE) + facet_wrap(~garage) +
+         labs (
+           title = "Home Price Distribution by Garage in Duke Forest",
+           x = "Price (USD)",
+           y = "Number of Houses"
+         )
+       
 ```
 
 Add narrative here...
+Houses with a garage tend to be more expensive, while houses without a garage cluster in a lower range. This indicates having a garage is sought after in Duke Forest. Adding a legend is not needed as the colour is already differentiated by garage status.
 
 ::: callout-important
 Now is a good time to render, commit, and push.
@@ -67,10 +78,20 @@ Once again, data visualization skills to the rescue!
 ```{r}
 #| label: price-area
 
-# add code here
+ggplot(duke_forest, aes(x=area, y=price, color=year_built))+
+  geom_point() + geom_smooth(se=FALSE)+
+  labs(
+    title = "House Price vs Area in Duke Forest, Coloured By Year Constructed",
+    x = "Area (sq ft)",
+    y = "Price (USD)",
+    color = "Year Built"
+  )
 ```
 
 Add narrative here...
+Claim 1: Yes, generally speaking this is true. Following the curve, the price increases as square footage increases.
+Claim 2: Some newer houses are priced higher but not all. There does not seem to be a strong relationship between year built and house price.
+Claim 3: Many of the bigger and more expensive houses are somewhat newer but not all of them. There does not seem to be a very strong relationship between bigger, more expensive houses being newer.
 
 ::: callout-important
 Now is a good time to render, commit, and push.
