@@ -174,9 +174,34 @@ Important
 </ul></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(duke_forest, <span class="fu">aes</span>(<span class="at">x=</span>area, <span class="at">y=</span>price, <span class="at">color=</span>year_built))<span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"House Price vs Area in Duke Forest, Coloured By Year Constructed"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Area (sq ft)"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Price (USD)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Year Built"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
-<p>Add narrative here…</p>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The following aesthetics were dropped during statistical transformation:
+colour.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ae-03-duke-forest_files/figure-html/price-area-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Add narrative here… Claim 1: Yes, generally speaking this is true. Following the curve, the price increases as square footage increases. Claim 2: Some newer houses are priced higher but not all. There does not seem to be a strong relationship between year built and house price. Claim 3: Many of the bigger and more expensive houses are somewhat newer but not all of them. There does not seem to be a very strong relationship between bigger, more expensive houses being newer.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
